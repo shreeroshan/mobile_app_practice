@@ -1,6 +1,7 @@
 import "../../../global.css";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { tabs } from "../assets/constants";
 
 export default function RootLayout() {
   return (
@@ -42,53 +43,23 @@ export default function RootLayout() {
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          headerShown:false,
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "home" : "home-outline"}
-              size={26}
-              color={color}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="more"
-        options={{
-          title: "Explore",
-          headerShown:false,
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "grid" : "grid-outline"}
-              size={26}
-              color={color}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="notifications"
-        options={{
-          title: "Alerts",
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={
-                focused
-                  ? "notifications"
-                  : "notifications-outline"
-              }
-              size={26}
-              color={color}
-            />
-          ),
-        }}
-      />
+      {tabs.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            title: tab.title,
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? tab.activeIcon : tab.inactiveIcon}
+                size={26}
+                color={color}
+              />
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 }

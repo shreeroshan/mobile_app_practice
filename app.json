@@ -34,6 +34,12 @@
             "imageWidth": 76
           }
         }
+      ],
+     [
+        "expo-font",
+        {
+          "fonts": ["./path/to/file.ttf"]
+        }
       ]
     ],
     "experiments": {
